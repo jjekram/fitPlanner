@@ -1,5 +1,14 @@
 FitPlanner::Application.routes.draw do
 
+  resources :exercises
+
+
+  get "static_pages/search"
+
+  get "static_pages/home"
+
+  match 'exercises/createAll' => 'exercises#createAll', :via => :get
+
   root to: 'static_pages#home'
 
   # The priority is based upon order of creation:
