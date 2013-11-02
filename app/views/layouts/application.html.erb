@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FitPlanner</title>
+  <title><%= yield(:title) %> | fitPlanner</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -11,8 +11,22 @@
   
 </head>
 <body>
-
+<div data-role="header">
+    <h1><%= yield(:title) %> </h1>
+    <a href = "/" data-icon="home" class = "ui-btn-right">Home</a>
+    <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" class = "ui-btn-left" data-inline="true"></a>
+  </div>
 <%= yield %>
+
+<div data-role="panel" id="myPanel" data-position="left" data-display="overlay" data-theme="a">
+	<ul data-role="listview" data-theme = "a">
+		<li><a href="/">Home</a></li>
+		<li><a href="/exercises">Exercises</a></li>
+	</ul>
+	<br/>
+    <a href="" data-role="button" data-rel="close">Close</a>
+
+  </div>
 
 </body>
 </html>
