@@ -2,9 +2,13 @@
 <html>
 <head>
   <title>FitPlanner</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "http://code.jquery.com/mobile/latest/jquery.mobile.min.css", :media => "all" %>
+  <%= javascript_include_tag "http://code.jquery.com/mobile/latest/jquery.mobile.min.js" %>
   <%= csrf_meta_tags %>
+  
 </head>
 <body>
 

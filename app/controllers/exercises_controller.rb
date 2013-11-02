@@ -5,32 +5,20 @@ class ExercisesController < ApplicationController
   def index
     @exercises = Exercise.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @exercises }
-    end
+    
   end
 
   # GET /exercises/1
   # GET /exercises/1.json
   def show
     @exercise = Exercise.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @exercise }
-    end
   end
 
   # GET /exercises/new
   # GET /exercises/new.json
   def new
     @exercise = Exercise.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @exercise }
-    end
+    
   end
 
   # GET /exercises/1/edit
