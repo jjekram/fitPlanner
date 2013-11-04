@@ -1,21 +1,13 @@
 
 <%provide(:title, @exercise.title)%>
 <div data-role="content">
+	<%if (@exercise.pic != "Image not Available")%>
+		<img src ="<%=@exercise.pic%>" style = "max-height:99%;max-width:99%;"/>
+	<%else%>
+		<p>Image not Available</p>
+	<%end%>
 	<p id="notice"><%= notice %></p>
-	<p>
-	  <b>Instruction:</b>
-	  <%= @exercise.instruction %>
-	</p>
-
-	<p>
-	  <b>Pic:</b>
-	  <%= @exercise.pic %>
-	</p>
-
-	<p>
-	  <b>Page:</b>
-	  <%= @exercise.page_id %>
-	</p>
+	
 	<a href="/exercises" data-role="button" data-icon="back" class="ui-btn-left" data-theme="c">Back</a>
 </div>
 

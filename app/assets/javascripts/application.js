@@ -17,3 +17,6 @@ $$( document ).bind( "mobileinit", function() {
 	$.mobile.defaultPageTransition = "flow";
 	$.mobile.transitionFallbacks.flow = "flow";
 });
+
+
+

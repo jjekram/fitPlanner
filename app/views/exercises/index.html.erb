@@ -5,13 +5,11 @@
 
 <div data-role = "content">
   <ul data-role="listview" data-theme = "b" data-filter="true" data-filter-placeholder="Search exercises..." data-inset="true">
-    <% i=1 %>
-    <% @exercises.each do |exercise| %>
-      <li><a href="/exercises/<%=i%>/"><%= exercise.title %></a></li>
-
-      <% i+=1 %>
     
+    <% @exercises.each do |exercise| %>
+      <li><a href="/exercises/<%=exercise.id%>/"><%= exercise.title %></a></li>         
     <% end %>
+    
   </ul>
 
 </div>

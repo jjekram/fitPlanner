@@ -11,6 +11,12 @@
   
 </head>
 <body>
+
+<script>
+$(document).on("swiperight", function(event, ui){
+	$("#myPanel").panel("open");
+});
+</script>
 <div data-role="header">
     <h1><%= yield(:title) %> </h1>
     <a href = "/" data-icon="home" class = "ui-btn-right">Home</a>
@@ -19,9 +25,10 @@
 <%= yield %>
 
 <div data-role="panel" id="myPanel" data-position="left" data-display="overlay" data-theme="a">
-	<ul data-role="listview" data-theme = "a">
+	<ul data-role="listview" data-theme = "a" data-icon="false">
 		<li><a href="/">Home</a></li>
 		<li><a href="/exercises">Exercises</a></li>
+		<li><a href="/about">About</a></li>
 	</ul>
 	<br/>
     <a href="" data-role="button" data-rel="close">Close</a>

@@ -3,7 +3,9 @@ FitPlanner::Application.routes.draw do
   resources :exercises
 
 
-  get "static_pages/search"
+  #get "static_pages/search"
+  match "/about" => 'static_pages#about'
+
 
   get "static_pages/home"
 
