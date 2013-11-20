@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div data-role = "content">
+<p>
+  <b>Name:</b>
+  <%= @routine.name %>
+</p>
+
+<p>
+  <b>Days:</b>
+  <%= @routine.days %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @routine.workouts %>
+</p>
+</div>
+
+<%= link_to 'Edit', edit_routine_path(@routine) %> |
+<%= link_to 'Back', routines_path %>

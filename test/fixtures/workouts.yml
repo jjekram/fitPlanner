@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: workouts
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  pic         :string(255)
+#  routine_id  :integer
+#  exercise_id :integer
+#  sets        :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  pic: MyString
+  routine_id: 1
+  exercise_id: 1
+  sets: 1
+
+two:
+  name: MyString
+  pic: MyString
+  routine_id: 1
+  exercise_id: 1
+  sets: 1
