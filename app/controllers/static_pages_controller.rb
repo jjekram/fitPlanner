@@ -30,4 +30,8 @@ class StaticPagesController < ApplicationController
   	end
 =end
   end
+
+  def signup
+
+  end
 end

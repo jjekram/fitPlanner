@@ -51,7 +51,7 @@ class ExercisesController < ApplicationController
               end
             end
           end
-          @exercise = Exercise.new(:instruction => "none", :title =>single_exercise["title"], :page_id => single_exercise["pageid"], :pic=> image_url )
+          @exercise = Exercise.new(:instruction => "none", :title =>single_exercise["title"], :page_id => single_exercise["pageid"], :pic=> image_url , :routine_id=>"null")
           @exercise.save
     end    
   end

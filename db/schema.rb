@@ -11,13 +11,54 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131030034746) do
+ActiveRecord::Schema.define(:version => 20131115034437) do
 
   create_table "exercises", :force => true do |t|
     t.string   "title"
     t.text     "instruction"
     t.text     "pic"
     t.string   "page_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "routine_id"
+  end
+
+  create_table "mapped_exercises", :force => true do |t|
+    t.string   "name"
+    t.string   "pic"
+    t.integer  "routine_id"
+    t.integer  "exercise_id"
+    t.integer  "sets"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "routines", :force => true do |t|
+    t.string   "name"
+    t.text     "days"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "city"
+    t.string   "country"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.string   "password_digest"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+
+  create_table "workouts", :force => true do |t|
+    t.string   "name"
+    t.string   "pic"
+    t.integer  "routine_id"
+    t.integer  "exercise_id"
+    t.integer  "sets"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

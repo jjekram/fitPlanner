@@ -18,5 +18,8 @@ $$( document ).bind( "mobileinit", function() {
 	$.mobile.transitionFallbacks.flow = "flow";
 });
 
-
-
+$(function(){
+	$(document).on("swiperight", function(event, ui){
+		$("#myPanel").panel("open");
+	});
+};

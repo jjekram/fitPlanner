@@ -1,17 +1,30 @@
 FitPlanner::Application.routes.draw do
 
+  get "workout/new"
+
+  get "workout/edit"
+
+  get "users/edit"
+
+  resources :routines
+
   resources :exercises
+
+  resources :users
 
 
   #get "static_pages/search"
   match "/about" => 'static_pages#about'
+  
 
 
-  get "static_pages/home"
 
-  match 'exercises/createAll' => 'exercises#createAll', :via => :get
 
   root to: 'static_pages#home'
+  match 'exercises/createAll' => 'exercises#createAll', :via => :get
+  match "/signup" => 'users#new', :via => :get
+
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
