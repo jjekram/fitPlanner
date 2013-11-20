@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
 $$( document ).bind( "mobileinit", function() {
 	$.mobile.defaultPageTransition = "flow";
 	$.mobile.transitionFallbacks.flow = "flow";
@@ -22,4 +23,4 @@ $(function(){
 	$(document).on("swiperight", function(event, ui){
 		$("#myPanel").panel("open");
 	});
-};
+});
