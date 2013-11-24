@@ -1,9 +1,6 @@
 FitPlanner::Application.routes.draw do
 
-  get "workout/new"
-
-  get "workout/edit"
-
+  
   get "users/edit"
 
   resources :routines
@@ -11,6 +8,8 @@ FitPlanner::Application.routes.draw do
   resources :exercises
 
   resources :users
+
+  resources :sessions, only: [:new, :create, :destroy]
 
 
   #get "static_pages/search"
@@ -21,8 +20,10 @@ FitPlanner::Application.routes.draw do
 
 
   root to: 'static_pages#home'
-  match 'exercises/createAll' => 'exercises#createAll', :via => :get
-  match "/signup" => 'users#new', :via => :get
+  match '/signup',  to: 'users#new'
+  match '/login',  to: 'sessions#new'
+  match '/logout', to: 'sessions#destroy'
+ 
 
   
 

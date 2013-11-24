@@ -1,6 +1,10 @@
-<% provide(:title, "Sign up")%>
+<% provide(:title, "Sign Up")%>
 
 <div data-role="content">
+	<div style="text-align:right" class="actions"> Already have an account?
+
+		<a href="<%=login_path%>" data-mini="true" data-theme="b" data-inline="true" data-role="button">Log In</a>
+	</div>
 
 	<%=form_for (@user) do |f|%>
 
@@ -19,7 +23,7 @@
 		<%= f.text_field :name %>
 
 		<%=f.label :email %>
-		<%= f.text_field :email %>
+		<%= f.email_field :email %>
 
 		<%=f.label :password %>
 		<%= f.password_field :password %>
@@ -28,7 +32,7 @@
 		<%= f.password_field :password_confirmation %>
 
 		<br/>
-		<div class="actions">
+		<div class="actions" >
 		<%=f.submit "Create Account"  %>
 	</div>
 	<%end%>

@@ -1,10 +1,13 @@
 require 'json'
 class StaticPagesController < ApplicationController
+  before_filter :logged_in_user
+
   def about
   	
   end
 
   def home
+    
 =begin
   	result = JSON.parse(open("http://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Weight%20training%20exercises&cmlimit=max&format=json").read)
   	exercise_arr = result["query"]["categorymembers"]
@@ -30,8 +33,8 @@ class StaticPagesController < ApplicationController
   	end
 =end
   end
-
-  def signup
-
-  end
+  private
+    def logged_in_user
+        redirect_to login_path, notice: "Please log in." unless logged_in?
+    end
 end

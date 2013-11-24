@@ -14,23 +14,41 @@
 
 <script>
 </script>
-<div data-role="header">
-    <h1><%= yield(:title) %> </h1>
-    <a href = "/" data-icon="home" class = "ui-btn-right">Home</a>
-    <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" class = "ui-btn-left" data-inline="true"></a>
-  </div>
-<%= yield %>
+<div data-role="page" data-url="<%= request.path %>">
+  <div data-role="header">
+    
+      <h1><%= yield(:title) %> </h1>
+      
+    
+      <% if(logged_in?) %>
+      <a href = "/"  data-theme="c" data-iconpos="notext" data-icon="home" class = "ui-btn-right"></a>
+      <a href="#myPanel" data-role="button" data-icon="bars" data-iconpos="notext" data-theme="c" class = "ui-btn-left" data-inline="true"></a>
+       <% end %>
+    </div>
 
-<div data-role="panel" id="myPanel" data-position="left" data-display="overlay" data-theme="a">
-	<ul data-role="listview" data-theme = "a" data-icon="false">
-		<li><a href="/">Home</a></li>
-		<li><a href="/exercises">Exercises</a></li>
-		<li><a href="/about">About</a></li>
-	</ul>
-	<br/>
-    <a href="" data-role="button" data-rel="close">Close</a>
+  <% if(yield(:title) == "Log In" || yield(:title) == "Sign Up" || logged_in?) %>
+   
+    <%= yield %>
 
+  <%end%>
+
+  <% if(yield(:title) != "Log In" && yield(:title) != "Sign Up") %>
+  <div data-role="panel" id="myPanel" data-position="left" data-display="overlay" data-theme="a">
+  	<ul data-role="listview" data-theme = "a" data-icon="false">
+      <br />
+      <br />
+      <br />
+  		<li><a href="/">Home</a></li>
+      <li><a href='<%=edit_user_path(current_user)%>'>Edit Profile</a></li>
+  		<li><a href="/exercises">Exercises</a></li>
+  		<li><a href="/about">About</a></li>
+      <li><a href="/logout">Logout</a></li>
+  	</ul>
+  	
   </div>
+    <% end %>
+</div>
+  
 
 </body>
 </html>
