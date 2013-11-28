@@ -1,29 +1,80 @@
-<%= form_for(@routine) do |f| %>
-  <% if @routine.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@routine.errors.count, "error") %> prohibited this routine from being saved:</h2>
+<div data-role="content">
+  <%= form_for(@routine) do |f| %>
+    <% if @routine.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@routine.errors.count, "error") %> prohibited this routine from being saved:</h2>
 
-      <ul>
-      <% @routine.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <ul>
+        <% @routine.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    
+      
+    
+      
+    <br />
+   
+    <div  data-role="collapsible">
+        <h2>Day(s) Performing Routine</h2>
+        <ul data-role="listview" data-split-icon="gear" data-filter="true">
+         <% days =["Weekend","Weekdays", "Everyday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday"]%>
+        <% days.each do |day| %>
+          <li data-theme="b"><a data-theme="b" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
+                          <label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+                              <fieldset data-theme="b" data-role="controlgroup" >                                                        
+                                  <input data-theme="b" type="checkbox" name="routine[days][<%=day%>]" id="checkbox-2b" />                    
+                                  <label data-theme="b" for="routine[days][<%=day%>]" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;">
+                                      <label  data-theme="b" style="padding:10px 0px 0px 10px;"> 
+                                          
+                                          <%= day %>
+                                      </label> 
+                                  </label>
+                              </fieldset>    
+                          </label>
+                          </a>
+                </li>
+          
+        <% end %>
       </ul>
     </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    
+
+
+    <div  data-role="collapsible">
+      <h2>Select Exercises</h2>
+      <ul data-role="listview" data-split-icon="gear" data-filter="true">
+      <% @exercises.each do |exercise| %>
+        <li data-theme="b"><a data-theme="b" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
+                        <label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+                            <fieldset data-theme="b" data-role="controlgroup" >                                                        
+                                <input data-theme="b" type="checkbox" name="workout[<%= exercise.title %>]" id="checkbox-2b" />                    
+                                <label data-theme="b" for="workout[<%= exercise.title %>]" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;">
+                                    <label  data-theme="b" style="padding:10px 0px 0px 10px;"> 
+                                        
+                                        <%= exercise.title %>
+                                    </label> 
+                                </label>
+                            </fieldset>    
+                        </label>
+                        </a>
+              </li>
+        
+      <% end %>
+    </ul>
   </div>
-  <div class="field">
-    <%= f.label :days %><br />
-    <%= f.text_area :days %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.number_field :user_id %>
-  </div>
+
+  <br />
+  
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+</div>

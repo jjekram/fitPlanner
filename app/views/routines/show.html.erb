@@ -1,5 +1,9 @@
-<p id="notice"><%= notice %></p>
+<%=provide(:title,'Routine Details')%>
 <div data-role = "content">
+	<p id="notice"><%= notice %></p>
+	<div style="text-align:right;">
+		<a href="<%=edit_routine_path(@routine)%>" data-mini="true" data-icon="edit" data-theme="b" data-inline="true" data-role="button">Edit</a>
+	</div>
 <p>
   <b>Name:</b>
   <%= @routine.name %>

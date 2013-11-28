@@ -34,7 +34,7 @@
 
   <% if(yield(:title) != "Log In" && yield(:title) != "Sign Up") %>
   <div data-role="panel" id="myPanel" data-position="left" data-display="overlay" data-theme="a">
-  	<ul data-role="listview" data-theme = "a" data-icon="false">
+  	<ul data-role="listview"  data-icon="false">
       <br />
       <br />
       <br />
@@ -42,6 +42,10 @@
       <li><a href='<%=edit_user_path(current_user)%>'>Edit Profile</a></li>
   		<li><a href="/exercises">Exercises</a></li>
   		<li><a href="/about">About</a></li>
+      <br />
+      <br />
+      <br />
+      <br />
       <li><a href="/logout">Logout</a></li>
   	</ul>
   	

@@ -25,6 +25,7 @@ class RoutinesController < ApplicationController
   # GET /routines/new.json
   def new
     @routine = Routine.new
+    @exercises = Exercise.all
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +36,7 @@ class RoutinesController < ApplicationController
   # GET /routines/1/edit
   def edit
     @routine = Routine.find(params[:id])
+    @exercises = Exercise.all
   end
 
   # POST /routines
@@ -58,14 +60,30 @@ class RoutinesController < ApplicationController
   def update
     @routine = Routine.find(params[:id])
 
+    if params[:routine][:days]
+        params[:routine][:days] = params[:routine][:days].keys.join(', ')
+    end
+
+    if params[:workout]
+      params[:workout] = params[:workout].keys
+    end
+    
     respond_to do |format|
+
       if @routine.update_attributes(params[:routine])
-        format.html { redirect_to @routine, notice: 'Routine was successfully updated.' }
+        if params[:workout]
+          params[:workout].each do |workout|
+            @workout=Workout.new(:name => workout, :routine_id => @routine.id)
+            @workout.save
+          end
+        end
+        format.html { redirect_to @routine, notice: params[:workout]}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @routine.errors, status: :unprocessable_entity }
       end
+
     end
   end
 

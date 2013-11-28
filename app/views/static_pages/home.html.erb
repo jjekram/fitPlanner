@@ -2,4 +2,20 @@
 <div data-role="content">
     <div style="text-align:right"><b>Welcome, <%=current_user.name%>!</b></div>
 
+    <div>
+    	<a data-role="button" data-theme="e" href="<%=new_routine_path%>">Create New Routine</a>
+    	<h3>Here are the routines you have:</h3>
+    	
+    	<%=current_user.routines.each do |routine|%>
+    		<ul data-role="listview" data-theme="b" data-inset="true">
+			    <li><a href="<%=routine_path(routine)%>">
+			        <h2><%=routine.name%></h2>
+			        <p><strong><%=routine.days%></strong></p>
+			    </a></li>
+			    
+			</ul>
+
+    	<%end%>
+    </div>
+
 </div>

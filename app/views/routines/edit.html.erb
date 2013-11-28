@@ -1,6 +1,8 @@
-<h1>Editing routine</h1>
+<%provide(:title, 'Edit Routine')%>
+<div data-role="content">
 
-<%= render 'form' %>
+	<%= render 'form' %>
 
-<%= link_to 'Show', @routine %> |
-<%= link_to 'Back', routines_path %>
+	<a data-role="button" href="<%=routine_path%>" data-theme="b">Cancel</a>
+
+</div>
