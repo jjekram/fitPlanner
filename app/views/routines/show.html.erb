@@ -14,11 +14,15 @@
   <%= @routine.days %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @routine.workouts %>
-</p>
-</div>
+<!--<a href="/performs/1" data-role="button">Start Workout</a>-->
 
-<%= link_to 'Edit', edit_routine_path(@routine) %> |
-<%= link_to 'Back', routines_path %>
+<h3>Workouts:</h3>
+<ul data-role="listview" data-theme="b" data-inset="true">
+<%@routine.workouts.each do |workout| %>
+          <li>
+              <a href="<%=workout_path(workout)%>"><%=workout.name%></a>
+          </li>        
+<%end%>
+</ul>
+
+</div>

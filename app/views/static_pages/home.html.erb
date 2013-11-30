@@ -6,7 +6,7 @@
     	<a data-role="button" data-theme="e" href="<%=new_routine_path%>">Create New Routine</a>
     	<h3>Here are the routines you have:</h3>
     	
-    	<%=current_user.routines.each do |routine|%>
+    	<%current_user.routines.each do |routine|%>
     		<ul data-role="listview" data-theme="b" data-inset="true">
 			    <li><a href="<%=routine_path(routine)%>">
 			        <h2><%=routine.name%></h2>

@@ -1,0 +1,8 @@
+<div data-role="content">
+	<form action="/histories" method="post">
+		<input type="hidden" name="[history][routine_id]" value="<%=@routine.id%>">
+		<%@routine.workouts.each do |workout|%>
+		<% end %>
+		<input type="submit" value="Finish Routine">
+	</form>
+</div>

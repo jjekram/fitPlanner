@@ -1,0 +1,17 @@
+<%provide(:title, @workout.name)%>
+
+<div data-role="content">
+	<p id="notice"><%= notice %></p>
+	<%= form_for(@workout) do |f| %>
+		<input type="hidden" name="workout[id]" value="<%=@workout.id%>">
+
+		<label for="set_count" class="ui-input-text">Sets</label>
+		<input id="set_count" name="workout[sets]" size="30" type="number" class="ui-input-text ui-body-c">
+
+		<label for="repition_count" class="ui-input-text">Repitions:</label>
+		<input id="repitition_count" name="workout[reps]" size="30" type="number" class="ui-input-text ui-body-c">
+		
+		<input type="submit" value="next">
+
+	<% end %>
+</div>

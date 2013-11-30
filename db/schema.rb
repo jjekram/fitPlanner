@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131123032646) do
+ActiveRecord::Schema.define(:version => 20131128043205) do
 
   create_table "exercises", :force => true do |t|
     t.string   "title"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(:version => 20131123032646) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "routine_id"
+  end
+
+  create_table "histories", :force => true do |t|
+    t.integer  "sets"
+    t.integer  "reps"
+    t.integer  "workout_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "mapped_exercises", :force => true do |t|
@@ -57,10 +65,8 @@ ActiveRecord::Schema.define(:version => 20131123032646) do
 
   create_table "workouts", :force => true do |t|
     t.string   "name"
-    t.string   "pic"
     t.integer  "routine_id"
     t.integer  "exercise_id"
-    t.integer  "sets"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

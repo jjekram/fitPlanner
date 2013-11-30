@@ -1,19 +1,30 @@
 FitPlanner::Application.routes.draw do
 
   
+  
+
+  get "histories/new"
+
   get "users/edit"
 
   resources :routines
 
+  resources :workouts
+
   resources :exercises
 
   resources :users
+
+  resources :histories
+
+  resources :performs
 
   resources :sessions, only: [:new, :create, :destroy]
 
 
   #get "static_pages/search"
   match "/about" => 'static_pages#about'
+
   
 
 
