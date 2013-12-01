@@ -1,0 +1,28 @@
+<%provide(:title, @routine.name)%>
+<div data-role="content">
+	<ul data-role="listview" data-theme="b" data-inset="true">
+		<%@routine.workouts.each do |workout|%>
+			<div data-role="collapsible" data-theme="b" data-content-theme="c">
+			    <h2><%=workout.name%></h2>
+			    <ul data-role="listview">
+			    	<table>
+			    	<tr>
+			    		<th>Reps</th>
+			    		<th>Sets</th>
+			    		<th>Date</th>
+			    	</tr>
+			    	<%workout.histories.each do |history|%>
+			    	
+				    	<tr>
+				    		<td><%=history.sets%></td>
+				    		<td><%=history.sets%></td>
+				    		<td><%=history.sets%></td>
+				    	</tr>
+				    
+			    	<%end%>
+			    </table>
+			    </ul>
+			</div>
+		<%end%>
+	</ul>
+</div>

@@ -3,7 +3,7 @@
 <div data-role="content">
 	<p id="notice"><%= notice %></p>
 	<%= form_for(@workout) do |f| %>
-		<input type="hidden" name="workout[id]" value="<%=@workout.id%>">
+		
 
 		<label for="set_count" class="ui-input-text">Sets</label>
 		<input id="set_count" name="workout[sets]" size="30" type="number" class="ui-input-text ui-body-c">
@@ -11,7 +11,41 @@
 		<label for="repition_count" class="ui-input-text">Repitions:</label>
 		<input id="repitition_count" name="workout[reps]" size="30" type="number" class="ui-input-text ui-body-c">
 		
-		<input type="submit" value="next">
+		<div style="text-align:center;"><b>Next:</b></div>
+
+		<% if @workout.next%>
+			<input type="submit" data-theme="b" name="workout[next]" value="<%=@workout.next.name%>">
+		<%else%>
+			<input type="submit" data-theme="b" name="workout[next]" value="<%=@routine.workouts.first.name%>">
+		<% end %>
+
+
+		<div data-role="collapsible" data-theme="b" data-content-theme="c">
+		    <h2>or select the next exercise </h2>
+		    <ul data-role="listview" data-filter="true">
+		    	<% @routine.workouts.each do |single_workout|%>
+			    	<% if @workout.next && single_workout.name != @workout.next.name%>
+				    	<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+				    		<li style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;" >
+				    			<input type="submit" data-theme="b" name="workout[next]" value="<%=single_workout.name%>">
+				    		</li>
+				    	</label>
+				    <%elsif !@workout.next%>
+				    	<%if single_workout.name != @routine.workouts.first.name%>
+					    		<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+					    		<li style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;" >
+					    			<input type="submit" data-theme="b" name="workout[next]" value="<%=single_workout.name%>">
+					    		</li>
+					    	</label>
+				    	<%end%>
+				    <%end%>
+		    	<%end%>
+		    </ul>
+		</div>
+
+
+		<input type="submit" data-theme="e" name="workout[next]" value="Finish Routine">
 
 	<% end %>
+
 </div>

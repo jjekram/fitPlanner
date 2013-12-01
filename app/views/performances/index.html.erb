@@ -1,0 +1,17 @@
+<%provide(:title, 'Performace History')%>
+<div data-role="content">
+    <div style="text-align:center;"><b>Select Routine</b></div>
+
+    <div>    	
+    	<%current_user.routines.each do |routine|%>
+    		<ul data-role="listview" data-theme="b" data-inset="true">
+			    <li><a href="<%=performance_path(routine)%>">
+			        <h2><%=routine.name%></h2>
+			    </a></li>
+			    
+			</ul>
+
+    	<%end%>
+    </div>
+
+</div>

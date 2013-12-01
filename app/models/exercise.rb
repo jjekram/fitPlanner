@@ -14,5 +14,5 @@
 
 class Exercise < ActiveRecord::Base
 	belongs_to :routine 
-  attr_accessible :instruction, :page_id, :pic, :title, :routine_id
+  	attr_accessible :instruction, :page_id, :pic, :title, :routine_id
 end

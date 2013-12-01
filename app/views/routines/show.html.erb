@@ -15,8 +15,12 @@
 </p>
 
 <!--<a href="/performs/1" data-role="button">Start Workout</a>-->
+<%if @routine.workouts.any? %>
+  <h3><%= pluralize(@routine.workouts.count, "Exercise")%>:</h3>
+<%else%>
+  <p style="color:red;">You have no exercise for this routine, please click "Edit" to add a workout.</p>
+<%end%>
 
-<h3>Workouts:</h3>
 <ul data-role="listview" data-theme="b" data-inset="true">
 <%@routine.workouts.each do |workout| %>
           <li>

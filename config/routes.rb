@@ -3,6 +3,10 @@ FitPlanner::Application.routes.draw do
   
   
 
+  get "performances/show"
+
+  get "performances/index"
+
   get "histories/new"
 
   get "users/edit"
@@ -17,7 +21,7 @@ FitPlanner::Application.routes.draw do
 
   resources :histories
 
-  resources :performs
+  resources :performances
 
   resources :sessions, only: [:new, :create, :destroy]
 

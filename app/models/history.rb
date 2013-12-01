@@ -1,3 +1,4 @@
 class History < ActiveRecord::Base
-  attr_accessible :reps, :sets, :workout_id
+	belongs_to :workout_id
+  	attr_accessible :reps, :sets, :workout_id
 end

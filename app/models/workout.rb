@@ -14,5 +14,16 @@
 
 class Workout < ActiveRecord::Base
 	belongs_to :routine
+	has_many :histories
   attr_accessible :exercise_id, :name, :pic, :routine_id, :sets
+
+  def next
+    routine.workouts.where("id > ?", id).order("id ASC").first
+  end
+
+  def prev
+    routine.workouts.where("id < ?", id).order("id DESC").first
+  end
+
+
 end
