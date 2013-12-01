@@ -3,25 +3,31 @@
 	<ul data-role="listview" data-theme="b" data-inset="true">
 		<%@routine.workouts.each do |workout|%>
 			<div data-role="collapsible" data-theme="b" data-content-theme="c">
+				<%if !workout.histories.empty?%>
 			    <h2><%=workout.name%></h2>
 			    <ul data-role="listview">
-			    	<table>
-			    	<tr>
-			    		<th>Reps</th>
-			    		<th>Sets</th>
-			    		<th>Date</th>
-			    	</tr>
+				    	<table>
+				    	<tr>
+				    		<th>Reps</th>
+				    		<th>Sets</th>
+				    		<th>Date and Time</th>
+				    	</tr>
+
 			    	<%workout.histories.each do |history|%>
 			    	
 				    	<tr>
-				    		<td><%=history.sets%></td>
-				    		<td><%=history.sets%></td>
-				    		<td><%=history.sets%></td>
+				    		<td><b><%=history.reps%></b></td>
+				    		<td><b><%=history.sets%></b></td>
+				    		<td><%=history.created_at.to_formatted_s(:long)%></td>
 				    	</tr>
 				    
 			    	<%end%>
-			    </table>
+			    	</table>
+			    	<%else%>
+
+			    	
 			    </ul>
+			    <%end%>
 			</div>
 		<%end%>
 	</ul>
