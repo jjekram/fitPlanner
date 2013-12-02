@@ -1,34 +1,72 @@
 <%provide(:title, @routine.name)%>
+
 <div data-role="content">
-	<ul data-role="listview" data-theme="b" data-inset="true">
-		<%@routine.workouts.each do |workout|%>
-			<div data-role="collapsible" data-theme="b" data-content-theme="c">
-				<%if !workout.histories.empty?%>
-			    <h2><%=workout.name%></h2>
-			    <ul data-role="listview">
-				    	<table>
-				    	<tr>
-				    		<th>Reps</th>
-				    		<th>Sets</th>
-				    		<th>Date and Time</th>
-				    	</tr>
+	<%if !@routine.histories.empty?%>
+	<h3>By Date:</h3>
+	<div name="exercise" id="exercise">
+		<ul data-role="listview" data-theme="b" data-inset="true">
+			
+			<%@histories_dates.each do |history_date|%>
+				<div data-role="collapsible" data-theme="b" data-content-theme="c">
+					<h2><%=history_date%></h2>
+					<ul data-role="listview">
+						<table>
+					    	<tr>
+					    		<th>Exercise</th>
+					    		<th>Reps</th>
+					    		<th>Sets</th>
+					    	</tr>
+						<%@histories.each do |history|%>
+							<%if history.created_at.to_date == history_date%>
+								<tr>
+									<td><%=Workout.find(history.workout_id).name%></td>
+						    		<td><b><%=history.reps%></b></td>
+						    		<td><b><%=history.sets%></b></td>
+						    	</tr>
+					    	<%end%>
+						<%end%>
+					</table>
+					</ul>
+				</div>
+			<%end%>
+		</ul>
+	</div>
 
-			    	<%workout.histories.each do |history|%>
-			    	
-				    	<tr>
-				    		<td><b><%=history.reps%></b></td>
-				    		<td><b><%=history.sets%></b></td>
-				    		<td><%=history.created_at.to_formatted_s(:long)%></td>
-				    	</tr>
-				    
-			    	<%end%>
-			    	</table>
-			    	<%else%>
 
-			    	
-			    </ul>
-			    <%end%>
-			</div>
-		<%end%>
-	</ul>
+
+	<h3>By Exercises:</h3>
+	<div name="exercise" id="exercise">
+		<ul data-role="listview" data-theme="b" data-inset="true">
+			<%@routine.workouts.each do |workout|%>
+				<div data-role="collapsible" data-theme="b" data-content-theme="c">
+					<%if !workout.histories.empty?%>
+				    <h2><%=workout.name%></h2>
+				    <ul data-role="listview">
+					    	<table>
+					    	<tr>
+					    		<th>Reps</th>
+					    		<th>Sets</th>
+					    		<th>Date and Time</th>
+					    	</tr>
+
+				    	<%workout.histories.each do |history|%>
+				    	
+					    	<tr>
+					    		<td><b><%=history.reps%></b></td>
+					    		<td><b><%=history.sets%></b></td>
+					    		<td><%=history.created_at.to_formatted_s(:long)%></td>
+					    	</tr>
+					    
+				    	<%end%>
+				    	</table> 	
+				    </ul>
+				    <%end%>
+				</div>
+			<%end%>
+		</ul>
+	</div>
+	<%else%>
+		<div style="color:red;">You have no history for this routine.</div>
+	<%end%>
 </div>
+

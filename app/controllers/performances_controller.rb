@@ -3,9 +3,18 @@ class PerformancesController < ApplicationController
   
   	def show
 	  	@routine = Routine.find(params[:id])
-	  	
-	    
+	  	@histories_dates = []
+	  	@routine.histories.order("created_at DESC").each do |single_history|
+	  		@histories_dates << single_history.created_at.to_date
+	  	end
+	  	@histories_dates = @histories_dates.uniq
+
+	  	@histories = []
+	  	@routine.histories.order("created_at DESC").each do |history|
+	  		@histories << history
+	  	end
 	 end
+
   
 
 	  def index

@@ -13,5 +13,6 @@
 class Routine < ActiveRecord::Base
 	belongs_to :user
 	has_many :workouts
+	has_many :histories
   attr_accessible :days, :name, :user_id
 end
