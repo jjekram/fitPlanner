@@ -14,7 +14,7 @@
   <%= @routine.days %>
 </p>
 
-<!--<a href="/performs/1" data-role="button">Start Workout</a>-->
+<a href="<%=performance_path(@routine)%>" data-role="button">Perfomance History</a>
 <%if @routine.workouts.any? %>
   <h3><%= pluralize(@routine.workouts.count, "Exercise")%>:</h3>
 <%else%>

@@ -2,7 +2,8 @@
 
 <div data-role="content">
 	<a data-role="button" data-mini="true" data-inline="true" href="/performances">Back</a>
-	<h3>Performance summary of: <%=@routine.name%></h3>
+	<h3>Performance summary of:</h3> 
+	<a data-role="button" data-mini="true" data-inline="true" data-theme="b" href="<%=routine_path(@routine)%>"><%=@routine.name%></a>
 	<%if !@routine.histories.empty?%>
 	<h3>By Date:</h3>
 	<div name="exercise" id="exercise">
