@@ -27,10 +27,8 @@ class WorkoutsController < ApplicationController
       next_exercise = @routine
     end
 
+    redirect_to next_exercise
     
-    respond_to do |format|
-  	 format.html { redirect_to next_exercise, notice: a}
-    end
   end
 
   

@@ -4,7 +4,12 @@
 
     <div>
     	<a data-role="button" data-theme="e" href="<%=new_routine_path%>">Create New Routine</a>
-    	<h3>Here are the routines you have:</h3>
+
+        <%if current_user.routines.empty?%>
+            <h3>You have no routines at this moment. Please click the button above.</h3>
+        <%else%>
+    	   <h3>Here are the routines you have:</h3>
+        <%end%>
     	
     	<%current_user.routines.each do |routine|%>
     		<ul data-role="listview" data-theme="b" data-inset="true">

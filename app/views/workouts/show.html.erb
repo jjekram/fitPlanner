@@ -11,17 +11,21 @@
 		<label for="repition_count" class="ui-input-text">Repitions:</label>
 		<input id="repitition_count" name="workout[reps]" size="30" type="number" class="ui-input-text ui-body-c">
 		
-		<div style="text-align:center;"><b>Next:</b></div>
+		<div><b>Next:</b>
 
 		<% if @workout.next%>
-			<input type="submit" data-theme="b" name="workout[next]" value="<%=@workout.next.name%>">
+			<input type="submit" data-theme="b" data-mini="true" data-inline="true" name="workout[next]" value="<%=@workout.next.name%>">
 		<%else%>
-			<input type="submit" data-theme="b" name="workout[next]" value="<%=@routine.workouts.first.name%>">
+			<input type="submit" data-theme="b" name="workout[next]" data-mini="true" data-inline="true" value="<%=@routine.workouts.first.name%>">
 		<% end %>
+		
+		<input type="submit" data-mini="true" style="text-align:right;" data-inline="true" name="workout[next]" value="Finish Routine">
+		
+		</div>
 
 
-		<div data-role="collapsible" data-theme="b" data-content-theme="c">
-		    <h2>or select the next exercise </h2>
+		<div data-role="collapsible" data-theme="e" data-content-theme="c">
+		    <h2>OR select the next exercise </h2>
 		    <ul data-role="listview" data-filter="true">
 		    	<% @routine.workouts.each do |single_workout|%>
 			    	<% if @workout.next && single_workout.name != @workout.next.name%>
@@ -44,7 +48,6 @@
 		</div>
 
 
-		<input type="submit" data-theme="e" name="workout[next]" value="Finish Routine">
 
 	<% end %>
 

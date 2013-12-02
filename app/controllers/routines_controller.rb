@@ -44,11 +44,27 @@ class RoutinesController < ApplicationController
   def create
 
     params[:routine][:user_id] = current_user.id
+
+    if params[:routine][:days]
+        params[:routine][:days] = params[:routine][:days].keys.join(', ')
+    end
+
     @routine = Routine.new(params[:routine])
+
+
+    if params[:workout]
+      params[:workout] = params[:workout].keys
+    end
 
 
     respond_to do |format|
       if @routine.save
+        if params[:workout]
+          params[:workout].each do |workout|
+            @workout=Workout.new(:name => workout, :routine_id => @routine.id)
+            @workout.save
+          end
+        end
         format.html { redirect_to @routine, notice: 'Routine was successfully created.' }
         format.json { render json: @routine, status: :created, location: @routine }
       else
