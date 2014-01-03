@@ -1,6 +1,7 @@
 require 'json'
 class StaticPagesController < ApplicationController
-  before_filter :logged_in_user
+  before_filter :logged_in_user_notice, only: [:about]
+  before_filter :logged_in_user, only: [:home]
 
   def about
   	
@@ -35,7 +36,11 @@ class StaticPagesController < ApplicationController
 =end
   end
   private
-    def logged_in_user
+    def logged_in_user_notice
         redirect_to login_path, notice: "Please log in." unless logged_in?
+    end
+
+    def logged_in_user
+        redirect_to login_path unless logged_in?
     end
 end

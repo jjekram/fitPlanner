@@ -1,16 +1,30 @@
 
 <%provide(:title, @exercise.title)%>
 <div data-role="content">
+	<a href="/exercises" data-role="button" data-icon="back" class="ui-btn-left" data-theme="c">Back</a>
 	<%if (@exercise.pic != "Image not Available")%>
 		<img src ="<%=@exercise.pic%>" style = "max-height:99%;max-width:99%;"/>
 	<%else%>
 		<p>Image not Available</p>
 	<%end%>
-	<p id="notice"><%= notice %></p>
+	<%if !current_user.routines.empty? %>
+	<p>Add to Routine:</p>
+		<%current_user.routines.each do |routine|%>
+			<ul data-role="listview" data-theme="b" data-inset="true">
+			    <li><a href="<%=routine_path(routine)%>">
+			        <h2><%=routine.name%></h2>
+			    </a></li>
+			    
+			</ul>
+
+		<%end%>
+	<%end%>
+
+
 	
 
 	
-	<a href="/exercises" data-role="button" data-icon="back" class="ui-btn-left" data-theme="c">Back</a>
+	
 </div>
 
 
