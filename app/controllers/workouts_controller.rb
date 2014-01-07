@@ -27,7 +27,7 @@ class WorkoutsController < ApplicationController
       next_exercise = @routine
     end
 
-    flash[:notice] = "nEXT";
+    
     redirect_to next_exercise
     
   end
