@@ -19,6 +19,7 @@
 					    		<th>Exercise</th>
 					    		<th>Reps</th>
 					    		<th>Sets</th>
+					    		<th>Weight</th>
 					    	</tr>
 						<%@histories.each do |history|%>
 							<%if history.created_at.to_date == history_date%>
@@ -26,6 +27,14 @@
 									<td><%=Workout.find(history.workout_id).name%></td>
 						    		<td><b><%=history.reps%></b></td>
 						    		<td><b><%=history.sets%></b></td>
+						    		<td><b>
+						    			<%if history.weight %>
+						    			 <%=history.weight%>
+						    			<% else %>
+						    				N/A
+						    			<% end %>
+
+						    		</b></td>
 						    	</tr>
 					    	<%end%>
 						<%end%>
@@ -50,6 +59,7 @@
 					    	<tr>
 					    		<th>Reps</th>
 					    		<th>Sets</th>
+					    		<th>Weight</th>
 					    		<th>Date and Time</th>
 					    	</tr>
 
@@ -58,7 +68,16 @@
 					    	<tr>
 					    		<td><b><%=history.reps%></b></td>
 					    		<td><b><%=history.sets%></b></td>
-					    		<td><%=history.created_at.to_formatted_s(:long)%></td>
+					    		<td><b>
+					    			
+					    			<%if history.weight %>
+						    			<%=history.weight%>
+						    		<% else %>
+						    			N/A
+						    		<% end %>
+
+					    		</b></td>
+					    		<td><%=history.created_at.to_formatted_s(:short)%></td>
 					    	</tr>
 					    
 				    	<%end%>
