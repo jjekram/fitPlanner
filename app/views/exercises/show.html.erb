@@ -2,6 +2,8 @@
 <%provide(:title, @exercise.title)%>
 <div data-role="content">
 	<a href="/exercises" data-role="button" data-icon="back" class="ui-btn-left" data-theme="c">Back</a>
+	<br />
+	<br />
 	<%if (@exercise.pic != "Image not Available")%>
 		<img src ="<%=@exercise.pic%>" style = "max-height:99%;max-width:99%;"/>
 	<%else%>

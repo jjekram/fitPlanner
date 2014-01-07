@@ -9,32 +9,94 @@ class StaticPagesController < ApplicationController
 
 
   def home
-    
-=begin
-  	result = JSON.parse(open("http://en.wikipedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Weight%20training%20exercises&cmlimit=max&format=json").read)
-  	exercise_arr = result["query"]["categorymembers"]
-    @urls = Array.new
-    exercise_arr.each do |single_exercise|
-          image_list=JSON.parse(open("http://en.wikipedia.org/w/api.php?action=query&pageids="+single_exercise['pageid'].to_s+"&prop=images&imlimit=20&format=json").read)
+
+    # days of the week
+    days =["Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday","Sunday"]
+
+    @routines = []
+
+    @todays_routines = []
+
+    @today = ""
+
+    @tomorrow = ""
+
+    @tomorrows_routines = []
+
+    @monday_routines = []
+
+    @tuesday_routines = []
+
+    @wednesday_routines = []
+
+    @thursday_routines = []
+
+    @friday_routines = []
+
+    @saturday_routines = []
+
+    @sunday_routines = []
+
+
+    # get all the routines
+    current_user.routines.each do |routine|
+      @routines << routine
+
+      #days the routine is performed
+      routine_days = routine.days.split(", ")
+
+      routine_days.each do |day|
+
+        today_index = Date.today.wday
+
+        # if the routine is for today
+        if days[today_index-1] == day
+          @todays_routines << routine
+
+        # if today is sunday and the routine is for Monday
+        elsif today_index == 7 &&  days[0] == day
+          @tomorrows_routines << routine
+
+        # if today is not sunday and the routine is for tomorrow
+        elsif today_index != 7 && days[today_index] == day
+          @tomorrows_routines << routine
+
+        end
+
+        # parsing routine based on day it belongs to
+        if day == "Monday"
+          @monday_routines << routine
+
+        elsif day == "Tuesday"
+          @tuesday_routines << routine
+
+        elsif day == "Wednesday"
+          @wednesday_routines << routine
+
+        elsif day == "Thursday"
+          @thursday_routines << routine
+
+        elsif day == "Friday"
+          @friday_routines << routine
+
+        elsif day == "Saturday"
+          @saturday_routines << routine
+
+        else
+          @sunday_routines << routine
           
-          image_url = "Image not Available"
-          if(image_list["query"]["pages"][single_exercise["pageid"].to_s]["images"])
-          	image_array = image_list["query"]["pages"][single_exercise["pageid"].to_s]["images"]
-          	image_selected = false
-          	image_array.each do |single_image|
-          		if(image_selected == false)
-	              image = single_image['title']
-	              image_info=JSON.parse(open(URI.encode("http://en.wikipedia.org/w/api.php?action=query&titles="+image+"&prop=imageinfo&iiprop=url&format=json")).read)
-	              if (image_info["query"]["pages"]["-1"])
-	              	@urls << image_info["query"]["pages"]["-1"]["imageinfo"][0]["url"]
-	              	image_selected = true
-	              end
-	            end
-            end
-          end
-  	end
-=end
+        end
+
+
+
+      end
+
+    end
+    
+
   end
+
+
   private
     def logged_in_user_notice
         redirect_to login_path, notice: "Please log in." unless logged_in?

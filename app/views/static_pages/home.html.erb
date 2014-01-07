@@ -6,21 +6,141 @@
     	<a data-role="button" data-theme="e" href="<%=new_routine_path%>">Create New Routine</a>
 
         <%if current_user.routines.empty?%>
-            <h3>You have no routines at this moment. Please click the button above.</h3>
+            <h3 style="color:red;">You have no routines at this moment. Please click the button above.</h3>
         <%else%>
-    	   <h3>Here are the routines you have:</h3>
+    	   <h3>Workout Routine:</h3>
         <%end%>
     	
-    	<%current_user.routines.each do |routine|%>
-    		<ul data-role="listview" data-theme="b" data-inset="true">
-			    <li><a href="<%=routine_path(routine)%>">
-			        <h2><%=routine.name%></h2>
-			        <p><strong><%=routine.days%></strong></p>
-			    </a></li>
-			    
-			</ul>
+        <!-- Printing routines from today -->
+        <ul data-role="listview" data-theme="b" data-inset="true" data-divider-theme="d">
+            <li data-role="list-divider">Today</li>
+            <%if @todays_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+            <%else%> 
+                <%@todays_routines.each do |routine|%>	
+        		    <li><a href="<%=routine_path(routine)%>">
+        		        <h2><%=routine.name%></h2>
+        		    </a></li>		    
+            	<% end %>
+            <% end %>
+        </ul>
 
-    	<%end%>
+
+
+
+
+
+
+        <!-- Printing routines from tomorrow -->
+        <ul data-role="listview" data-theme="b" data-inset="true" data-divider-theme="d">
+            <li data-role="list-divider">Tomorrow</li>
+            <%if @tomorrows_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+            <%else%> 
+                <%@tomorrows_routines.each do |routine|%>
+                        <li><a href="<%=routine_path(routine)%>">
+                            <h2><%=routine.name%></h2>
+                        </a></li>           
+                <% end %>
+            <% end %>
+        </ul>
+
+
+
+
+
+
+
+
+
+
+        <!-- Printing the whole schedule-->
+        <div data-role="collapsible" data-theme="d">
+            <h2>View Complete Schedule</h2>
+            <ul data-role="listview" data-theme="b" data-divider-theme="d">
+                <li data-role="list-divider">Monday</li>
+                <%if @monday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@monday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                     <% end %>
+                <% end %>
+            
+                <li data-role="list-divider">Tuesday</li>
+                <%if @tuesday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@tuesday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+            
+                <li data-role="list-divider">Wednesday</li>
+                <%if @wednesday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@wednesday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+            
+                <li data-role="list-divider">Thursday</li>
+                <%if @thursday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@thursday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+
+            
+                <li data-role="list-divider">Friday</li>
+                <%if @friday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@friday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+            
+                <li data-role="list-divider">Saturday</li>
+                <%if @saturday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%> 
+                    <%@saturday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+            
+                <li data-role="list-divider">Sunday</li>
+                <%if @sunday_routines.empty?%>
+                    <li><i>Rest Day!</i></li>
+                <%else%>   
+
+                    <%@sunday_routines.each do |routine|%>
+                            <li><a href="<%=routine_path(routine)%>">
+                                <h2><%=routine.name%></h2>
+                            </a></li>           
+                    <% end %>
+                <% end %>
+
+            </ul>
+        </div>
+
+
     </div>
 
 </div>
