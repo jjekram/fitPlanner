@@ -96,7 +96,7 @@ class RoutinesController < ApplicationController
             @workout.save
           end
         end
-        format.html { redirect_to @routine, notice: params[:workout]}
+        format.html { redirect_to @routine}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

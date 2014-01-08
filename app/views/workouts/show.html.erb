@@ -28,29 +28,32 @@
 		
 		</div>
 
+		<% if @routine.workouts.length > 1 %>
 
-		<div data-role="collapsible" data-theme="e" data-content-theme="c">
-		    <h2>OR select the next exercise </h2>
-		    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search exercises...">
-		    	<% @routine.workouts.each do |single_workout|%>
-			    	<% if @workout.next && single_workout.name != @workout.next.name%>
-				    	<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
-				    		<li style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;" >
-				    			<input type="submit" data-theme="b" name="workout[next]" value="<%=single_workout.name%>">
-				    		</li>
-				    	</label>
-				    <%elsif !@workout.next%>
-				    	<%if single_workout.name != @routine.workouts.first.name%>
-					    		<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+			<div data-role="collapsible" data-theme="e" data-content-theme="c">
+			    <h2>OR select the next exercise </h2>
+			    <ul data-role="listview" data-filter="true" data-filter-placeholder="Search exercises...">
+			    	<% @routine.workouts.each do |single_workout|%>
+				    	<% if @workout.next && single_workout.name != @workout.next.name%>
+					    	<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
 					    		<li style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;" >
 					    			<input type="submit" data-theme="b" name="workout[next]" value="<%=single_workout.name%>">
 					    		</li>
 					    	</label>
-				    	<%end%>
-				    <%end%>
-		    	<%end%>
-		    </ul>
-		</div>
+					    <%elsif !@workout.next%>
+					    	<%if single_workout.name != @routine.workouts.first.name%>
+						    		<label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
+						    		<li style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;" >
+						    			<input type="submit" data-theme="b" name="workout[next]" value="<%=single_workout.name%>">
+						    		</li>
+						    	</label>
+					    	<%end%>
+					    <%end%>
+			    	<%end%>
+			    </ul>
+			</div>
+
+		<% end %>
 
 
 
