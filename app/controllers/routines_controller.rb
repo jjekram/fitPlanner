@@ -91,12 +91,17 @@ class RoutinesController < ApplicationController
 
       if @routine.update_attributes(params[:routine])
         if params[:workout]
+          # deleting previous routines
+          @routine.workouts.each do |single_workout|
+            single_workout.destroy
+          end
+
           params[:workout].each do |workout|
             @workout=Workout.new(:name => workout, :routine_id => @routine.id)
             @workout.save
           end
         end
-        format.html { redirect_to @routine}
+        format.html { redirect_to @routine, notice: @routine.name + "has updated."}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
