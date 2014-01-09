@@ -9,18 +9,7 @@
 	<%else%>
 		<p>Image not Available</p>
 	<%end%>
-	<%if !current_user.routines.empty? %>
-	<p>Add to Routine:</p>
-		<%current_user.routines.each do |routine|%>
-			<ul data-role="listview" data-theme="b" data-inset="true">
-			    <li><a href="<%=routine_path(routine)%>">
-			        <h2><%=routine.name%></h2>
-			    </a></li>
-			    
-			</ul>
-
-		<%end%>
-	<%end%>
+	
 
 
 	

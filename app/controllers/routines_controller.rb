@@ -91,11 +91,12 @@ class RoutinesController < ApplicationController
 
       if @routine.update_attributes(params[:routine])
         if params[:workout]
-          # deleting previous routines
+          # deleting previous exercises
           @routine.workouts.each do |single_workout|
             single_workout.destroy
           end
 
+          # adding the  current exercises
           params[:workout].each do |workout|
             @workout=Workout.new(:name => workout, :routine_id => @routine.id)
             @workout.save
