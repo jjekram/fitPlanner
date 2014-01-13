@@ -111,7 +111,7 @@ class RoutinesController < ApplicationController
             @workout.save
           end
         end
-        format.html { redirect_to @routine, notice: @routine.name + "has updated."}
+        format.html { redirect_to @routine, notice: @routine.name + " has updated."}
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
