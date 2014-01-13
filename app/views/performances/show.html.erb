@@ -24,7 +24,7 @@
 						<%@histories.each do |history|%>
 							<%if history.created_at.to_date == history_date%>
 								<tr>
-									<td><%=Workout.find(history.workout_id).name%></td>
+									<td><%=history.workout_name%></td>
 						    		<td><b><%=history.reps%></b></td>
 						    		<td><b><%=history.sets%></b></td>
 						    		<td><b>
@@ -46,7 +46,7 @@
 	</div>
 
 
-
+<%=@routine.workouts%>
 	<h3>By Exercises:</h3>
 	<div name="exercise" id="exercise">
 		<ul data-role="listview" data-theme="b" data-inset="true">

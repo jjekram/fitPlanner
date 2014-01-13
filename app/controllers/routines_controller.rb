@@ -87,6 +87,7 @@ class RoutinesController < ApplicationController
   # PUT /routines/1.json
   def update
     @routine = Routine.find(params[:id])
+    workout_names = []
 
     if params[:routine][:days]
         params[:routine][:days] = params[:routine][:days].keys.join(', ')
@@ -102,13 +103,18 @@ class RoutinesController < ApplicationController
         if params[:workout]
           # deleting previous exercises
           @routine.workouts.each do |single_workout|
-            single_workout.destroy
+            workout_names << single_workout.name
+            if !params[:workout].include? (single_workout.name)
+              single_workout.destroy
+            end
           end
 
           # adding the  current exercises
           params[:workout].each do |workout|
-            @workout=Workout.new(:name => workout, :routine_id => @routine.id)
-            @workout.save
+            if !workout_names.include?(workout)
+              @workout=Workout.new(:name => workout, :routine_id => @routine.id)
+              @workout.save
+            end
           end
         end
         format.html { redirect_to @routine, notice: @routine.name + " has updated."}

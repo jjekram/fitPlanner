@@ -14,5 +14,5 @@
 class History < ActiveRecord::Base
 	belongs_to :workout
 	belongs_to :routine
-  	attr_accessible :reps, :sets, :workout_id, :routine_id, :weight
+  	attr_accessible :reps, :sets, :workout_id, :routine_id, :weight, :workout_name
 end

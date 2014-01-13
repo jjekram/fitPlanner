@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
     a = params[:workout]
 
     if !params[:workout][:sets].empty? && !params[:workout][:reps].empty?
-      @history = History.new(:sets => params[:workout][:sets], :reps => params[:workout][:reps], :workout_id => @workout.id, :routine_id => @routine.id, :weight => params[:workout][:weight])
+      @history = History.new(:sets => params[:workout][:sets], :reps => params[:workout][:reps], :workout_id => @workout.id, :routine_id => @routine.id, :weight => params[:workout][:weight], :workout_name=>@workout.name)
       @history.save
     end
 
