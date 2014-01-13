@@ -36,6 +36,15 @@ class RoutinesController < ApplicationController
   # GET /routines/1/edit
   def edit
     @routine = Routine.find(params[:id])
+
+    @routine_days = @routine.days.split(", ")
+
+    @workouts = []
+
+    @routine.workouts.each do |workout|
+        @workouts << workout[:name]
+    end
+
     @exercises = Exercise.all
   end
 

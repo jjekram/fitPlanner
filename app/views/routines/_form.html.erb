@@ -15,7 +15,7 @@
     
       <%= f.label :name %><br />
       <%= f.text_field :name %>
-    
+
       
     
       
@@ -28,8 +28,22 @@
         <% days.each do |day| %>
           <li data-theme="b"><a data-theme="b" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
                           <label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
-                              <fieldset data-theme="b" data-role="controlgroup" >                                                        
-                                  <input data-theme="b" type="checkbox" name="routine[days][<%=day%>]" id="checkbox-2b" />                    
+                              <fieldset data-theme="b" data-role="controlgroup" >  
+                              <% if @routine_days %>
+
+                                <% if @routine_days.include?(day)%>                                                    
+                                  <input data-theme="b" type="checkbox" checked = "checked" name="routine[days][<%=day%>]" id="checkbox-2b" />
+                                <% else %>
+
+                                <input data-theme="b" type="checkbox" name="routine[days][<%=day%>]" id="checkbox-2b" />
+
+                                <% end %>  
+
+                              <% else %>  
+
+                                 <input data-theme="b" type="checkbox" name="routine[days][<%=day%>]" id="checkbox-2b" />
+                              <% end %> 
+
                                   <label data-theme="b" for="routine[days][<%=day%>]" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;">
                                       <label  data-theme="b" style="padding:10px 0px 0px 10px;"> 
                                           
@@ -47,15 +61,29 @@
 
     
 
-
     <div  data-role="collapsible">
       <h2>Select Exercises</h2>
       <ul data-role="listview" data-split-icon="gear" data-filter="true">
       <% @exercises.each do |exercise| %>
         <li data-theme="b"><a data-theme="b" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
                         <label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
-                            <fieldset data-theme="b" data-role="controlgroup" >                                                        
-                                <input data-theme="b" type="checkbox" name="workout[<%= exercise.title %>]" id="checkbox-2b" />                    
+                            <fieldset data-theme="b" data-role="controlgroup" >      
+                         
+                            <% if @workouts %>
+                              <% if @workouts.include?(exercise.title)%>                                                  
+                                <input data-theme="b" type="checkbox" checked="checked" name="workout[<%= exercise.title %>]" id="checkbox-2b" />  
+
+                            <% else %> 
+
+                              <input data-theme="b" type="checkbox" name="workout[<%= exercise.title %>]" id="checkbox-2b" />      
+
+                            <% end %>  
+                          <% else %>
+
+                             <input data-theme="b" type="checkbox" name="workout[<%= exercise.title %>]" id="checkbox-2b" />    
+                          <% end %>
+
+                         
                                 <label data-theme="b" for="workout[<%= exercise.title %>]" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;">
                                     <label  data-theme="b" style="padding:10px 0px 0px 10px;"> 
                                         
