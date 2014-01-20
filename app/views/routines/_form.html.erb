@@ -65,6 +65,7 @@
       <h2>Select Exercises</h2>
       <ul data-role="listview" data-split-icon="gear" data-filter="true">
       <% @exercises.each do |exercise| %>
+      <%if exercise.title != "List of weight training exercises" &&  exercise.title != "Negative repetition" &&exercise.title != "Good-morning" &&  exercise.title != "Handstand push-up" &&  exercise.title != "Overhead press" &&  exercise.title != "Push press" && exercise.title != "Split weight training" && exercise.title != "Supine row"%>
         <li data-theme="b"><a data-theme="b" href="#" style="padding-top: 0px;padding-bottom: 0px;padding-right: 0px;padding-left: 0px;">
                         <label data-theme="b" style="border-top-width: 0px;margin-top: 0px;border-bottom-width: 0px;margin-bottom: 0px;border-left-width: 0px;border-right-width: 0px;" data-corners="false">
                             <fieldset data-theme="b" data-role="controlgroup" >      
@@ -94,6 +95,7 @@
                         </label>
                         </a>
               </li>
+        <%end%>
         
       <% end %>
     </ul>

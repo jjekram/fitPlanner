@@ -7,11 +7,12 @@
   <ul data-role="listview" data-theme = "b" data-filter="true" data-filter-placeholder="Search exercises..." data-inset="true">
     
     <% @exercises.each do |exercise| %>
-      <li><a href="/exercises/<%=exercise.id%>/"><%= exercise.title %></a></li>         
+    	<%if exercise.title != "List of weight training exercises" &&  exercise.title != "Negative repetition" &&exercise.title != "Good-morning" &&  exercise.title != "Handstand push-up" &&  exercise.title != "Overhead press" &&  exercise.title != "Push press" && exercise.title != "Split weight training" && exercise.title != "Supine row"%>
+      		<li><a href="/exercises/<%=exercise.id%>/"><%= exercise.title %></a></li>
+     	<%end%>         
     <% end %>
     
   </ul>
 
 </div>
-
 
