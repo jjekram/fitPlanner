@@ -1,4 +1,5 @@
 class RoutinesController < ApplicationController
+  before_filter :logged_in_user
   # GET /routines
   # GET /routines.json
   def index
@@ -138,4 +139,8 @@ class RoutinesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  private
+      def logged_in_user
+          redirect_to login_path, notice: "Please log in." unless logged_in?
+      end
 end

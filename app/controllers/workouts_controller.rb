@@ -1,4 +1,5 @@
 class WorkoutsController < ApplicationController
+  before_filter :logged_in_user
   def show
   	@workout=Workout.find(params[:id])
   	@routine = Routine.find(@workout.routine_id)
@@ -31,6 +32,10 @@ class WorkoutsController < ApplicationController
     redirect_to next_exercise
     
   end
+  private
 
+    def logged_in_user
+      redirect_to login_path, notice: "Please log in." unless logged_in?
+    end
   
 end

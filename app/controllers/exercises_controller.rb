@@ -1,5 +1,6 @@
 
 class ExercisesController < ApplicationController
+  before_filter :logged_in_user
   # GET /exercises
   # GET /exercises.json
   def index
@@ -85,4 +86,9 @@ class ExercisesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+      def logged_in_user
+          redirect_to login_path, notice: "Please log in." unless logged_in?
+      end
 end
